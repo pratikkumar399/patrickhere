@@ -1,8 +1,9 @@
+import About from "./About/about";
 
 export default function Home() {
   return (
     <div>
-      hi
+      <About />
     </div>
   );
 }
