@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Navbar } from "@/components/generalUi/navbar";
 import { Inter } from 'next/font/google'
+import { NavbarDock } from "@/components/generalUi/navbarDock";
 
 
 
@@ -31,10 +32,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`flex flex-col content-center w-[700px] max-w-[80%] mx-auto mt-10 ${inter.className}`}
+        className={`flex flex-col content-center w-[700px] max-w-[80%] mx-auto mt-10 ${inter.className}bg-gray-200 dark:bg-black`}
       >
         {children}
-        <Navbar />
+        {/* <Navbar /> */}
+        <NavbarDock />
       </body>
     </html>
   );

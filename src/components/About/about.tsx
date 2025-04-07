@@ -34,14 +34,8 @@ const About = () => {
 
     return (
         <div>
-            <p className='text-3xl underline'  >pratikRai</p>
-            <p className='text-l pt-4'  >
-                Hi, I&apos;m Pratik Rai, a software developer.
-                <br />
-                I love writing blogs and creating projects out of my ideas.
-            </p>
-
-            <h3 className='text-xl pt-7' >Checkout my blogs</h3>
+          
+            <h3 className='text-xl pt-7' >Checkout my recent blogs</h3>
 
             {isLoading ?
                 <div className='pt-4'>
