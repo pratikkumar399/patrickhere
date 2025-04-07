@@ -1,8 +1,8 @@
 "use client"
 import { SkillBadges } from "@/components/generalUi/skillBadges";
-import About from "../components/About/about";
 import { motion, useInView, useAnimation } from "framer-motion";
 import { useEffect, useRef } from "react";
+import BlogsSection from "@/components/generalUi/blogsSection";
 
 export default function Home() {
   const ref = useRef(null);
@@ -32,15 +32,14 @@ export default function Home() {
       <motion.div
         ref={ref}
         variants={{
-          hidden: { opacity: 0, y: 75 },
+          hidden: { opacity: 0, y: 100 },
           visible: { opacity: 1, y: 0 },
         }}
         initial="hidden"
         animate={mainControls}
         transition={{ duration: 0.5, delay: 0.25 }}
-        className="mx-auto w-fit"
       >
-        <About />
+        <BlogsSection />
       </motion.div>
     </div>
   );

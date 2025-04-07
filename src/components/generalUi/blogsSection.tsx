@@ -30,6 +30,7 @@ const BlogsSection = () => {
 
     return (
         <div>
+            <h3 className='text-xl pt-7' >Checkout my recent blogs</h3>
 
             {isLoading ?
                 <div className='pt-4'>
