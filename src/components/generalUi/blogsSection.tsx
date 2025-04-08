@@ -46,7 +46,7 @@ const BlogsSection = () => {
 
             {isLoading ?
                 <div className='pt-4'>
-                    Loading blogs...
+                    Loading blogs please wait...
                 </div>
                 :
                 <div className='grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8'>
