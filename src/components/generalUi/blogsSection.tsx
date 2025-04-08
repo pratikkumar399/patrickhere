@@ -51,11 +51,6 @@ const BlogsSection = () => {
                 :
                 <div className='grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8'>
                     {blogsInfo?.slice(0, 6).map((post, index) => (
-                        // <div key={index} className='flex gap-4 items-center'>
-                        //     <a href={blog.link} target='_blank' rel='noopener noreferrer'>
-                        //         <p className='text-sm italic'>{blog.title}</p>
-                        //     </a>
-                        // </div>
                         <BlogCard key={index} className="grid grid-rows-[auto_auto_1fr_auto]">
                             {/* <div className="aspect-[16/9] w-full">
                                 <a
