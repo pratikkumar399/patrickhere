@@ -32,11 +32,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`flex flex-col content-center w-[700px] max-w-[80%] mx-auto mt-10 ${inter.className}bg-gray-200 dark:bg-black`}
+        className={`flex flex-col content-center w-[700px] max-w-[80%] mx-auto mt-10 ${inter.className}bg-gray-200 dark:bg-black
+          
+          `}
       >
         {children}
         {/* <Navbar /> */}
-        <NavbarDock />
+        <div className={`fixed bottom-4 w-full left-0`}>
+          <NavbarDock />
+        </div>
+
       </body>
     </html>
   );

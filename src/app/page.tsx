@@ -4,6 +4,7 @@ import { motion, useInView, useAnimation } from "framer-motion";
 import { useEffect, useRef } from "react";
 import BlogsSection from "@/components/generalUi/blogsSection";
 
+
 export default function Home() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
@@ -13,7 +14,7 @@ export default function Home() {
   }, [isInView]);
 
   return (
-    <div>
+    <div >
       <p className='text-3xl underline'  >pratikRai</p>
       <p className='text-l pt-4'  >
         Hi, I&apos;m Pratik Rai, a software developer.
