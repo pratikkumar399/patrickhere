@@ -64,7 +64,7 @@ const data = [
 
 export function NavbarDock() {
     return (
-        <div className='absolute bottom-4 left-1/2 max-w-full -translate-x-1/2'>
+        <div className='absolute top-4 left-1/2 max-w-full -translate-x-1/2'>
             <Dock className='items-end pb-3'>
                 {data.map((item, idx) => (
                     <DockItem

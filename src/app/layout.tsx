@@ -1,16 +1,10 @@
 import type { Metadata } from "next";
 // import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Jura } from "next/font/google";
-import { NavbarDock } from "@/components/generalUi/navbarDock";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
+import Link from "next/link";
 
-
-
-export const jura = Jura({
-  weight: "400",
-  style: "normal",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,14 +19,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`flex flex-col content-center max-w-3xl px-4 mx-auto mt-10 ${jura.className}bg-gray-200 dark:bg-black
-          
+        className={`flex flex-col content-center max-w-3xl px-4 mx-auto mt-10 ${GeistSans.variable}
+            ${GeistMono.variable}
+          bg-gray-200 dark:bg-[#111010] 
+          mb-12
           `}
       >
-        {children}
-        <div className={`fixed bottom-4 w-full left-0`}>
-          <NavbarDock />
+        <div className={`flex gap-4 mb-8 text-xl  justify-end cursor-pointer`}>
+          <Link href={"/"}>Home</Link>
+          <Link href={"/blog"}>Blog</Link>
         </div>
+        {children}
+
       </body>
     </html>
   );

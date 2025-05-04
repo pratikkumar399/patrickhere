@@ -17,10 +17,11 @@ export default function Home() {
 
   return (
     <div >
-      <div className="flex justify-between items-center md:flex-row flex-col flex-col-reverse gap-4">
-        <div>
+     
+      <div className="flex justify-between md:flex-row gap-4 items-center ">
+        <div >
           <p className='text-4xl font-bold'  >Hey , I'm pratikRai</p>
-          <p className='text-l pt-4'  >
+          <p className='text-l pt-4 text-gray-400'  >
             Software developer.
             <br />
             I love writing blogs and creating projects out of my ideas.
@@ -28,9 +29,7 @@ export default function Home() {
             I love reading fictional novels.
           </p>
         </div>
-        <div >
-          <Image className="h-[300px] w-[300px] object-cover rounded-[8px]" src={image} alt="profile-image" />
-        </div>
+       
       </div>
 
       <div className="pt-4">
@@ -50,6 +49,8 @@ export default function Home() {
       >
         <BlogsSection />
       </motion.div>
+
+      
     </div>
   );
 }
