@@ -22,7 +22,7 @@ export default function BlogList() {
     })
     return (
         <div >
-
+            <p className='text-xl underline'>blogs</p>
             {posts.map((post, index) => (
                 <BlogCard key={index} blog={post} />
             ))}

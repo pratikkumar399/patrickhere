@@ -20,7 +20,7 @@ export default function Home() {
      
       <div className="flex justify-between md:flex-row gap-4 items-center ">
         <div >
-          <p className='text-4xl font-bold'  >Hey , I'm pratikRai</p>
+          <p className='text-4xl font-bold'  >Hey , I'm PratikRai 👋</p>
           <p className='text-l pt-4 text-gray-400'  >
             Software developer.
             <br />
@@ -29,7 +29,9 @@ export default function Home() {
             I love reading fictional novels.
           </p>
         </div>
-       
+        <div >
+          <Image className="h-[250px] w-[250px] object-cover rounded-[8px]" src={image} alt="profile-image" />
+        </div>
       </div>
 
       <div className="pt-4">

@@ -80,3 +80,18 @@ body {
     border-color: #3b82f6; 
   }
 }
+
+/* Style for code blocks */
+pre {
+  border-radius: 0.5rem;
+  margin: 16px 0px;
+}
+
+code {
+  overflow-x: auto;
+  background-color: rgb(30, 30, 46);
+  padding: 1rem;
+  font-size: 0.9rem;
+  font-family: 'Fira Code', monospace;
+}
+
