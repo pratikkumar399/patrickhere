@@ -6,5 +6,64 @@ tags: ["Next.js", "MDX"]
 
 <br></br>
 
+This is **my journey** building a portfolio using Next.js 15. You can also use <span style={{ color: 'red' }}>React</span> components here.
 
-**Coming soon**
+``` cpp
+import {
+    Activity,
+    Component,
+    HomeIcon,
+    Mail,
+    Package,
+    ScrollText,
+    SunMoon,
+} from 'lucide-react';
+
+import { Dock, DockIcon, DockItem, DockLabel } from '@/components/ui/dock';
+import Link from 'next/link';
+
+const data = [
+    {
+        title: 'Home',
+        icon: (
+            <HomeIcon className='h-full w-full text-neutral-600 dark:text-neutral-300' />
+        ),
+        href: '/',
+    },
+    {
+        title: 'Blog',
+        icon: (
+            <Package className='h-full w-full text-neutral-600 dark:text-neutral-300' />
+        ),
+        href: '/blog',
+    },
+    {
+        title: 'Theme',
+        icon: (
+            <SunMoon className='h-full w-full text-neutral-600 dark:text-neutral-300' />
+        ),
+        href: '#',
+    },
+];
+
+export function NavbarDock() {
+    return (
+        <div className='absolute bottom-4 left-1/2 max-w-full -translate-x-1/2'>
+            <Dock className='items-end pb-3'>
+                {data.map((item, idx) => (
+
+                    <Link
+                        href={item?.href}
+                        key={idx}
+                    >
+                    </Link>
+                ))}
+            </Dock>
+        </div>
+    );
+}
+
+
+```
+
+

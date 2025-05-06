@@ -2,7 +2,6 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import slug from 'next/slug'
 import BlogCard from '@/components/generalUi/blogCard'
 
 export default function BlogList() {

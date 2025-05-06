@@ -2,7 +2,7 @@ import {
 
     HomeIcon,
     Package,
-    SunMoon,
+    // SunMoon,
 } from 'lucide-react';
 
 import { Dock, DockIcon, DockItem, DockLabel } from '@/components/ui/dock';
