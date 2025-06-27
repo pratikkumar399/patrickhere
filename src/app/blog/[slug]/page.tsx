@@ -17,8 +17,6 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
 }
 
 
-
-
 type BlogPageProps = {
     params: Promise<{ slug: string }>
 };
