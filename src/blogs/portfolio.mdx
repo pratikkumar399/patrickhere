@@ -2,6 +2,8 @@
 title: "How I Built My Portfolio"
 date: "2025-05-01"
 tags: ["Next.js", "MDX"]
+author: "Patrick"
+description: "A step-by-step guide on how I built my portfolio using Next.js 15 and MDX."
 ---
 
 <br></br>
@@ -51,7 +53,6 @@ export function NavbarDock() {
         <div className='absolute bottom-4 left-1/2 max-w-full -translate-x-1/2'>
             <Dock className='items-end pb-3'>
                 {data.map((item, idx) => (
-
                     <Link
                         href={item?.href}
                         key={idx}
