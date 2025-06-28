@@ -14,7 +14,6 @@ import rehypePrettyCode from "rehype-pretty-code";
 import { transformerCopyButton } from "@rehype-pretty/transformers";
 import PostContent from "@/components/PostContent";
 
-
 type BlogFrontmatter = {
     title: string;
     author: string;
@@ -22,18 +21,13 @@ type BlogFrontmatter = {
     date: string;
 };
 
-interface PageProps {
-    params: {
-        slug: string;
-    };
-}
-
-export default async function Page({ params }: PageProps) {
+// ✅ Correctly type params for App Router
+export default async function Page({ params }: { params: any }) {
     const slug = params.slug;
     const filepath = path.join(process.cwd(), "src/blogs", `${slug}.mdx`);
 
     if (!fs.existsSync(filepath)) {
-        notFound();
+        notFound(); // triggers 404
     }
 
     const fileContent = fs.readFileSync(filepath, "utf-8");
@@ -61,13 +55,6 @@ export default async function Page({ params }: PageProps) {
 
     const { title, author, description, date } = data as BlogFrontmatter;
 
-    console.log("Blog Post Data:", {
-        title,
-        author,
-        description,
-        date,
-    });
-
     return (
         <div className="max-w-6xl mx-auto p-4 relative">
             <h1 className="text-4xl font-bold mb-4">{title}</h1>
@@ -85,6 +72,7 @@ export default async function Page({ params }: PageProps) {
                 className="prose dark:prose-invert mt-6"
             ></div>
 
+            {/* Table of Contents */}
             <PostContent htmlContent={htmlContent} />
         </div>
     );
