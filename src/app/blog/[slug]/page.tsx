@@ -23,7 +23,7 @@ type BlogFrontmatter = {
 
 // ✅ Correctly type params for App Router
 export default async function Page({ params }: { params: any }) {
-    const slug = params.slug;
+    const {slug} = await params;
     const filepath = path.join(process.cwd(), "src/blogs", `${slug}.mdx`);
 
     if (!fs.existsSync(filepath)) {
