@@ -15,7 +15,7 @@ export default {
       },
     },
   },
-   plugins: [
+  plugins: [
     function ({ addUtilities }: { addUtilities: (utilities: Record<string, any>) => void }) {
       addUtilities({
         '.scrollbar-hide': {
