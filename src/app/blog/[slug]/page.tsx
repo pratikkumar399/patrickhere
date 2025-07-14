@@ -1,58 +1,79 @@
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
-import { serialize } from 'next-mdx-remote/serialize'
-import { MdxContent } from '@/components/MdxContent'
-import rehypePrettyCode from 'rehype-pretty-code'
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import { notFound } from "next/navigation";
+import { unified } from "unified";
+import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
+import rehypeStringify from "rehype-stringify";
+import rehypeDocument from "rehype-document";
+import rehypeFormat from "rehype-format";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypePrettyCode from "rehype-pretty-code";
+import { transformerCopyButton } from "@rehype-pretty/transformers";
+import PostContent from "@/components/PostContent";
 
-export const dynamic = "force-dynamic";
-export const fetchCache = "force-no-store";
-
-
-export async function generateStaticParams(): Promise<{ slug: string }[]> {
-    const files = fs.readdirSync('src/blogs');
-    return files.map((file) => ({
-        slug: file.replace('.mdx', ''),
-    }));
-}
-
-
-
-
-type BlogPageProps = {
-    params: Promise<{ slug: string }>
+type BlogFrontmatter = {
+    title: string;
+    author: string;
+    description: string;
+    date: string;
 };
 
-export default async function BlogPage({ params }: BlogPageProps) {
-    const { slug } = await params;
+// ✅ Correctly type params for App Router
+export default async function Page({ params }: { params: any }) {
+    const {slug} = await params;
+    const filepath = path.join(process.cwd(), "src/blogs", `${slug}.mdx`);
 
-    try {
-        const filePath = path.join('src/blogs', `${slug}.mdx`);
-        const fileContent = fs.readFileSync(filePath, 'utf8');
-        const { data: frontmatter, content } = matter(fileContent);
-
-        const mdxSource = await serialize(content, {
-            mdxOptions: {
-                rehypePlugins: [
-                    [rehypePrettyCode, {
-                        theme: {
-                            light: 'github-light',
-                            dark: 'github-dark',
-                        },
-                    }]
-                ]
-            }
-        });
-
-        return (
-            <main className="px-4">
-                <h1 className="text-2xl font-bold underline">{frontmatter.title}</h1>
-                <p className="text-sm text-gray-500">{frontmatter.date}</p>
-                <MdxContent source={mdxSource} />
-            </main>
-        );
-    } catch (error) {
-        console.error('❌ Error rendering blog page:', error);
-        return <div className="text-red-500 p-4">Failed to load blog content.</div>;
+    if (!fs.existsSync(filepath)) {
+        notFound(); // triggers 404
     }
+
+    const fileContent = fs.readFileSync(filepath, "utf-8");
+    const { content, data } = matter(fileContent);
+
+    const processor = unified()
+        .use(remarkParse)
+        .use(remarkRehype)
+        .use(rehypeDocument, { title: data.title || "Blog Post" })
+        .use(rehypeFormat)
+        .use(rehypeSlug)
+        .use(rehypeAutolinkHeadings)
+        .use(rehypePrettyCode, {
+            theme: "github-dark",
+            transformers: [
+                transformerCopyButton({
+                    visibility: "always",
+                    feedbackDuration: 3000,
+                }),
+            ],
+        })
+        .use(rehypeStringify);
+
+    const htmlContent = (await processor.process(content)).toString();
+
+    const { title, author, description, date } = data as BlogFrontmatter;
+
+    return (
+        <div className="max-w-6xl mx-auto p-4 relative">
+            <h1 className="text-4xl font-bold mb-4">{title}</h1>
+            <p className="text-base mb-2 border-l-4 border-gray-500 pl-4 italic">
+                &quot;{description}&quot;
+            </p>
+            <div className="flex gap-2">
+                <p className="text-sm text-gray-500 italic">By {author}</p>
+                <p className="text-sm text-gray-500">{date}</p>
+            </div>
+
+            {/* Blog Content */}
+            <div
+                dangerouslySetInnerHTML={{ __html: htmlContent }}
+                className="prose dark:prose-invert mt-6"
+            ></div>
+
+            {/* Table of Contents */}
+            <PostContent htmlContent={htmlContent} />
+        </div>
+    );
 }

@@ -1,31 +1,44 @@
 // app/blog/page.tsx
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
-import BlogCard from '@/components/generalUi/blogCard'
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import Image from "next/image";
+import React from "react";
+import BlogCard from "@/components/generalUi/blogCard";
 
-export default function BlogList() {
-    const files = fs.readdirSync('src/blogs')
-    type Post = {
-        link: string
-        title: string
-        date: string
-    }
+type BlogData = {
+    title: string;
+    description: string;
+    author: string;
+    date: string;
+    image: string;
+};
 
-    const posts: Post[] = files.map((file) => {
-        const slug = file.replace('.mdx', '/')
-        const link = `/blog/${slug}`
-        const fileContent = fs.readFileSync(path.join('src/blogs', file), 'utf8')
-        const { data: frontmatter } = matter(fileContent)
-        return { link, title: frontmatter.title, date: frontmatter.date }
-    })
+function getBlogsData(): BlogData[] {
+    const blogDir = path.join(process.cwd(), "src/blogs");
+    const files = fs.readdirSync(blogDir);
+
+    const blogs = files.map((file) => {
+        const fileContent = fs.readFileSync(path.join(blogDir, file), "utf-8");
+        const { data } = matter(fileContent);
+        return { ...data as BlogData, slug: file.replace(".mdx", "") };
+    });
+
+    return blogs;
+}
+
+const BlogPage = () => {
+    const blogs = getBlogsData(); // ✅ Server component = runs on server, so fs works
+
     return (
         <div >
             <p className='text-xl underline'>blogs</p>
-            {posts.map((post, index) => (
+            {blogs.map((post, index) => (
                 <BlogCard key={index} blog={post} />
             ))}
             {/* </ul> */}
         </div>
-    )
-}
+    );
+};
+
+export default BlogPage;
