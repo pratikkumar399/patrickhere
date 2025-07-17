@@ -32,11 +32,11 @@ const BlogPage = () => {
 
     return (
         <div >
-            <p className='text-xl underline'>blogs</p>
+            <p className='text-xl underline mt-10'>my blogs</p>
             {blogs.map((post, index) => (
                 <BlogCard key={index} blog={post} />
             ))}
-            {/* </ul> */}
+
         </div>
     );
 };

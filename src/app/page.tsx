@@ -5,6 +5,8 @@ import { useEffect, useRef } from "react";
 import BlogsSection from "@/components/generalUi/blogsSection";
 import Image from "next/image";
 import image from "../../public/hunterXDev.png";
+import { LucideArrowUpRight } from "lucide-react";
+import Link from "next/link";
 
 
 export default function Home() {
@@ -17,31 +19,9 @@ export default function Home() {
 
   return (
     <div>
-      {/* Glassmorphic Fixed Navbar */}
-      <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90vw] max-w-2xl rounded-3xl border border-white/30 bg-white/10 backdrop-blur-lg flex items-center justify-between px-4 py-2">
-
-        <div className="flex items-center gap-2  py-2 rounded-2xl  ">
-          {/* Placeholder for icon */}
-         
-          <span className="font-bold text-xl text-blue-300">Pratik Rai</span>
-        </div>
-        {/* Center: Nav Links */}
-        <ul className="flex gap-8" >
-          <li>
-            <a href="#" className="font-semibold text-lg text-white/90 hover:text-blue-200 transition-colors">About</a>
-          </li>
-          <li>
-            <a href="#" className="font-semibold text-lg text-white/90 hover:text-blue-200 transition-colors">Blog</a>
-          </li>
-          <li>
-            <a href="#" className="font-semibold text-lg text-white/90 hover:text-blue-200 transition-colors">Projects</a>
-          </li>
-          
-        </ul>
-      
-      </nav>
+     
       {/* Add top padding to avoid nav overlap */}
-      <div className="pt-28">
+      <div className="pt-12">
         <div className="flex  md:flex-row gap-4 items-center rounded-[12px]   ">
           <div>
             <Image className="h-[250px] w-[250px] object-cover rounded-[8px]" src={image} alt="profile-image" />
