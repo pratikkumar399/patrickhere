@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
-import { NavbarDock } from "@/components/generalUi/navbarDock";
 import Script from "next/script";
 import { PostHogProvider } from './providers'
 
