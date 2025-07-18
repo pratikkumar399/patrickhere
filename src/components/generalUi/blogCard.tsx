@@ -1,26 +1,22 @@
 import { BlogPost } from '@/types/types';
-import React from 'react'
+import React from 'react';
 import Link from 'next/link';
-import { CalendarDays } from 'lucide-react';
+import { LucideArrowUpRight } from 'lucide-react';
 
-export default function BlogCard({ blog }: { blog: any }) {
-    console.log(blog)
+export default function BlogCard({ blog }: any) {
     return (
         <Link
-            className={'flex flex-col gap-2 border border-zinc-800 rounded-md p-4 my-3 hover:scale-105 transition-all'}
             href={`/blog/${blog.slug}`}
+            className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-8 hover:scale-105 transition-transform"
         >
-            <h1 className="text-xl font-extrabold text-gray-300">
+            <li className="list-none text-base text-gray-300 font-medium">
                 {blog.title}
-            </h1>
-            <div className="flex gap-4 text-gray-600">
-                <div className="flex items-center gap-2">
-                    <CalendarDays height={16} width={16} />
-                    <span className="text-sm ">{blog.date}</span>
-                </div>
+            </li>
 
+            <div className="flex items-center gap-2 text-sm text-gray-500">
+                <span>{blog.date}</span>
+                <LucideArrowUpRight width={16} />
             </div>
-
         </Link>
     );
 }

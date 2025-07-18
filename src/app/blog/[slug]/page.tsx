@@ -23,7 +23,7 @@ type BlogFrontmatter = {
 
 // ✅ Correctly type params for App Router
 export default async function Page({ params }: { params: any }) {
-    const {slug} = await params;
+    const { slug } = await params;
     const filepath = path.join(process.cwd(), "src/blogs", `${slug}.mdx`);
 
     if (!fs.existsSync(filepath)) {
@@ -56,24 +56,27 @@ export default async function Page({ params }: { params: any }) {
     const { title, author, description, date } = data as BlogFrontmatter;
 
     return (
-        <div className="max-w-6xl mx-auto p-4 relative">
-            <h1 className="text-4xl font-bold mb-4">{title}</h1>
-            <p className="text-base mb-2 border-l-4 border-gray-500 pl-4 italic">
-                &quot;{description}&quot;
-            </p>
-            <div className="flex gap-2">
-                <p className="text-sm text-gray-500 italic">By {author}</p>
-                <p className="text-sm text-gray-500">{date}</p>
+        <section id="blog">
+            <h1 className="title font-medium text-2xl tracking-tighter max-w-[650px]">
+                {title}
+            </h1>
+
+            <div className="flex justify-between items-center mt-2 mb-8 text-sm max-w-[650px]">
+                <p className="text-sm text-neutral-600 dark:text-neutral-400 italic">By {author}</p>
+                <p className="text-sm text-neutral-600 dark:text-neutral-400">{date}</p>
             </div>
 
-            {/* Blog Content */}
-            <div
-                dangerouslySetInnerHTML={{ __html: htmlContent }}
-                className="prose dark:prose-invert mt-6"
-            ></div>
+            <p className="text-neutral-500 dark:text-neutral-400 italic max-w-[650px] mb-6">
+                {description}
+            </p>
 
-            {/* Table of Contents */}
+            <article
+                className="prose dark:prose-invert"
+                dangerouslySetInnerHTML={{ __html: htmlContent }}
+            ></article>
+
             <PostContent htmlContent={htmlContent} />
-        </div>
+        </section>
+
     );
 }
