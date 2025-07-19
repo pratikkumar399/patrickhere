@@ -56,7 +56,7 @@ export default async function Page({ params }: { params: any }) {
     const { title, author, description, date } = data as BlogFrontmatter;
 
     return (
-        <section id="blog">
+        <section id="blog" className="mt-12">
             <h1 className="title font-medium text-2xl tracking-tighter max-w-[650px]">
                 {title}
             </h1>

@@ -1,15 +1,28 @@
 "use client"
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { blogPosts } from '@/lib/blogData'
+import { motion, useInView, useAnimation } from "framer-motion";
+
 import BlogCard from './blogCard'
 import Link from 'next/link'
 import { LucideArrowUpRight } from 'lucide-react'
+import { SkillBadges } from './skillBadges';
 
 
 const BlogsSection = () => {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true });
+    const mainControls = useAnimation();
+    useEffect(() => {
+        mainControls.start("visible");
+    }, [isInView]);
     return (
         <div>
-            <h3 className='text-xl pt-12 underline italic' >My recent technical articles</h3>
+            <div className="flex flex-col gap-2  pt-8 ">
+                <h3 className='text-xl text-blue-400' >skills</h3>
+                <SkillBadges />
+            </div>
+            <h3 className='text-xl pt-12 text-blue-400' >checkout my technical articles</h3>
 
             <div className='flex flex-col gap-6 pt-4  mb-10'>
                 {blogPosts?.slice(0, 4).map((blog, index) => (
@@ -29,11 +42,27 @@ const BlogsSection = () => {
                     </Link>
                 ))}
             </div>
-
-
+            <span className='flex gap-2 pb-8'>
+                <Link
+                    href="https://x.com/twtsof_Pratik"
+                    target="_blank"
+                    className="underline ml-1"
+                >
+                    x  dot  com
+                </Link>
+                <Link
+                    href="https://github.com/pratikkumar399"
+                    target="_blank"
+                    className="underline ml-1"
+                >
+                    github
+                </Link>
+            </span>
             <div className="flex justify-center">
                 Made with 💓 by Pratik Rai
             </div>
+
+
         </div>
     )
 }

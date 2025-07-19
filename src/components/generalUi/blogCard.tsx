@@ -7,7 +7,7 @@ export default function BlogCard({ blog }: any) {
     return (
         <Link
             href={`/blog/${blog.slug}`}
-            className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-8 hover:scale-105 transition-transform"
+            className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-8 hover:scale-105 transition-transform font-mono"
         >
             <li className="list-none text-base text-gray-300 font-medium">
                 {blog.title}

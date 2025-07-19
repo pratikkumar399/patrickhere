@@ -24,57 +24,35 @@ const techStack = [
 
 
 export default function Home() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-  const mainControls = useAnimation();
-  useEffect(() => {
-    mainControls.start("visible");
-  }, [isInView]);
+
 
   return (
     <div>
 
       {/* Add top padding to avoid nav overlap */}
       <div className="pt-12">
-        <div className="flex gap-6 items-center rounded-xl  text-white max-w-3xl">
-          <Image
-            src={image}
-            alt="avatar"
-            className="w-[100] h-[100] rounded-xl shadow-lg object-cover"
-          />
+        <div className="flex gap-6 items-center rounded-xl text-white max-w-3xl">
+
           <div className="flex flex-col gap-2">
-            <h1 className="text-3xl font-bold">pratik Here</h1>
-            <p className="text-gray-400">@twtsof_Pratik</p>
-            <p className="text-gray-300">🚀 building future with tech.</p>
-            <p className="text-gray-300">✍️ Writing blogs & building cool projects.</p>
-            <p className="text-gray-300">📖 Fiction fan & curious learner.</p>
+            <h1 className="text-3xl font-bold">pratik </h1>
+            <Link href="https://x.com/twtsof_Pratik" target="_blank" className="text-gray-400">@twtsof_Pratik</Link>
+            <div>
+              <p className="text-gray-300 text-s">Hi! My name is Pratik and I am currently working in a startup as SDE1.
+                I love building and working around my ideas.
+
+                Besides that I really love writing technical articles,
+                and blogs around my learnings and experiences about life and everything in between.
+                I also like to read some fictional novels and watch anime in my free time.
+              </p>
+            </div>
           </div>
         </div>
 
 
-        <div className="pt-4">
-          <h3 className='text-xl pb-2 underline' >my tech stack</h3>
-          {
-            techStack.map((skill, index) => (
-              <li key={index}>{skill}</li>
-            ))
-          }
-        </div>
-
+     
 
         <BlogsSection />
-        {/* <motion.div
-          ref={ref}
-          variants={{
-            hidden: { opacity: 0, y: 100 },
-            visible: { opacity: 1, y: 0 },
-          }}
-          initial="hidden"
-          animate={mainControls}
-          transition={{ duration: 0.5, delay: 0.25 }}
-        >
-          <BlogsSection />
-        </motion.div> */}
+
       </div>
     </div>
   );
