@@ -19,10 +19,10 @@ const BlogsSection = () => {
     return (
         <div>
             <div className="flex flex-col gap-2  pt-8 ">
-                <h3 className='text-xl text-blue-400' >skills</h3>
+                <h2 className='text-xl text-blue-400' >skills</h2>
                 <SkillBadges />
             </div>
-            <h3 className='text-xl pt-12 text-blue-400' >checkout my technical articles</h3>
+            <h2 className='text-xl pt-12 text-blue-400' >checkout my technical articles</h2>
 
             <div className='flex flex-col gap-6 pt-4  mb-10'>
                 {blogPosts?.slice(0, 4).map((blog, index) => (
@@ -31,9 +31,9 @@ const BlogsSection = () => {
                         target='_blank'
                         className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-8 hover:scale-105 transition-transform"
                     >
-                        <li className="list-none text-base text-gray-300 font-medium">
+                        <p className="list-none text-base text-gray-300 font-medium">
                             {blog.title}
-                        </li>
+                        </p>
 
                         <div className="flex items-center gap-2 text-sm text-gray-500">
                             <span>{blog.date}</span>

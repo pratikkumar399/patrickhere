@@ -48,9 +48,6 @@ export default function Home() {
           </div>
         </div>
 
-
-     
-
         <BlogsSection />
 
       </div>

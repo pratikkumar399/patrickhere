@@ -13,6 +13,7 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
 import { transformerCopyButton } from "@rehype-pretty/transformers";
 import PostContent from "@/components/PostContent";
+import GiscusComments from "@/components/GiscusComments";
 
 type BlogFrontmatter = {
     title: string;
@@ -76,6 +77,10 @@ export default async function Page({ params }: { params: any }) {
             ></article>
 
             <PostContent htmlContent={htmlContent} />
+
+            <div className="mt-20" >
+                <GiscusComments />
+            </div>
         </section>
 
     );
