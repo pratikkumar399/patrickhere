@@ -57,16 +57,16 @@ export default async function Page({ params }: { params: any }) {
 
     return (
         <section id="blog" className="mt-12">
-            <h1 className="title font-medium text-2xl tracking-tighter max-w-[650px]">
+            <h1 className="title font-medium text-2xl tracking-tighter ">
                 {title}
             </h1>
 
-            <div className="flex justify-between items-center mt-2 mb-8 text-sm max-w-[650px]">
+            <div className="flex justify-between items-center mt-2 mb-8 text-sm ">
                 <p className="text-sm text-neutral-600 dark:text-neutral-400 italic">By {author}</p>
                 <p className="text-sm text-neutral-600 dark:text-neutral-400">{date}</p>
             </div>
 
-            <p className="text-neutral-500 dark:text-neutral-400 italic max-w-[650px] mb-6">
+            <p className="text-neutral-500 dark:text-neutral-400 italic  mb-6">
                 {description}
             </p>
 
@@ -75,7 +75,6 @@ export default async function Page({ params }: { params: any }) {
                 dangerouslySetInnerHTML={{ __html: htmlContent }}
             ></article>
 
-            <PostContent htmlContent={htmlContent} />
         </section>
 
     );

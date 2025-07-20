@@ -1,26 +1,7 @@
 "use client"
-import { SkillBadges } from "@/components/generalUi/skillBadges";
-import { motion, useInView, useAnimation } from "framer-motion";
-import { useEffect, useRef } from "react";
 import BlogsSection from "@/components/generalUi/blogsSection";
-import image from "../../public/hunterXDev.png";
-
-
-import Image from "next/image";
 import Link from "next/link";
 
-
-const techStack = [
-  "React",
-  "Next.js",
-  "TypeScript",
-  "JavaScript",
-  "Node.js",
-  "Express.js",
-  "MongoDB",
-  "Tailwind CSS",
-  "Framer Motion",
-];
 
 
 export default function Home() {
@@ -47,12 +28,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-
-     
-
         <BlogsSection />
-
       </div>
     </div>
   );

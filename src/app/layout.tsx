@@ -4,13 +4,12 @@ import { IBM_Plex_Sans_Condensed } from "next/font/google";
 import Script from "next/script";
 import { PostHogProvider } from './providers';
 import Link from "next/link";
-import { Github, LucideArrowUpRight } from "lucide-react";
+import { LucideArrowUpRight } from "lucide-react";
 
-// Import the font
 const ibmPlexSansCondensed = IBM_Plex_Sans_Condensed({
   subsets: ["latin"],
   fallback: ["IBM Plex Sans Condensed Fallback"],
-  weight: ["400", "700"], // Specify weights as needed
+  weight: ["400", "700"], 
 });
 
 export const metadata: Metadata = {
@@ -27,13 +26,30 @@ export default function RootLayout({
   return (
     <html lang="en" className={ibmPlexSansCondensed.className}>
       <head>
+        {/* React Scan script */}
         <Script
           crossOrigin="anonymous"
           src="//unpkg.com/react-scan/dist/auto.global.js"
           strategy="lazyOnload"
         />
+
+        {/* Google Analytics - gtag.js */}
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-7FJ28ZD47X"
+        />
+
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-7FJ28ZD47X');
+        `}
+        </Script>
       </head>
-      <body className="bg-black ">
+
+      <body className="bg-black">
         <div className="min-h-screen w-full relative ">
           <div
             className="fixed inset-0 w-full h-full z-0"
@@ -46,7 +62,7 @@ export default function RootLayout({
           <div className="relative z-10 flex flex-col content-center max-w-4xl px-4 mx-auto  mb-[100px] bg-transparent">
             <PostHogProvider>
               <nav>
-                <div className="flex justify-end gap-4 mt-10 text-blue-400 ">
+                <div className="flex justify-end gap-4 mt-10 text-purple-500 ">
                   <Link href={"/"}>home</Link>
                   <Link href={"/blog"}>blogs</Link>
                   <Link href={"/projects"}>projects</Link>
