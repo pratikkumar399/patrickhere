@@ -11,7 +11,7 @@ const BlogsSection = () => {
     return (
         <div>
             <div className="flex flex-col gap-2  pt-8 ">
-                <h2 className='text-xl text-purple-500' >skills</h2>
+                <h2 className='text-xl text-blue-400' >skills</h2>
                 <SkillBadges />
             </div>
             <h2 className='text-xl pt-12 text-blue-400' >checkout my technical articles</h2>

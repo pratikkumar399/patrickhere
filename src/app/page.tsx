@@ -2,11 +2,7 @@
 import BlogsSection from "@/components/generalUi/blogsSection";
 import Link from "next/link";
 
-
-
 export default function Home() {
-
-
   return (
     <div>
 

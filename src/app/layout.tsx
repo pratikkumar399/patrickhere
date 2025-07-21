@@ -62,7 +62,7 @@ export default function RootLayout({
           <div className="relative z-10 flex flex-col content-center max-w-4xl px-4 mx-auto  mb-[100px] bg-transparent">
             <PostHogProvider>
               <nav>
-                <div className="flex justify-end gap-4 mt-10 text-purple-500 ">
+                <div className="flex justify-end gap-4 mt-10 text-blue-400 ">
                   <Link href={"/"}>home</Link>
                   <Link href={"/blog"}>blogs</Link>
                   <Link href={"/projects"}>projects</Link>
