@@ -5,11 +5,13 @@ import Script from "next/script";
 import { PostHogProvider } from './providers';
 import Link from "next/link";
 import { LucideArrowUpRight } from "lucide-react";
+import Analytics from '@/components/Analytics';
+
 
 const ibmPlexSansCondensed = IBM_Plex_Sans_Condensed({
   subsets: ["latin"],
   fallback: ["IBM Plex Sans Condensed Fallback"],
-  weight: ["400", "700"], 
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -61,6 +63,7 @@ export default function RootLayout({
 
           <div className="relative z-10 flex flex-col content-center max-w-4xl px-4 mx-auto  mb-[100px] bg-transparent">
             <PostHogProvider>
+              <Analytics />
               <nav>
                 <div className="flex justify-end gap-4 mt-10 text-blue-400 ">
                   <Link href={"/"}>home</Link>
