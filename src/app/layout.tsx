@@ -7,7 +7,12 @@ import Link from "next/link";
 import { LucideArrowUpRight } from "lucide-react";
 import Analytics from '@/components/Analytics';
 import { Suspense } from "react";
+import { Geist_Mono } from "next/font/google";
 
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+});
 
 const ibmPlexSansCondensed = IBM_Plex_Sans_Condensed({
   subsets: ["latin"],
@@ -27,7 +32,7 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html lang="en" className={ibmPlexSansCondensed.className}>
+    <html lang="en" className={geistMono.className}>
       <head>
         {/* React Scan script */}
         <Script
@@ -56,9 +61,7 @@ export default function RootLayout({
         <div className="min-h-screen w-full relative ">
           <div
             className="fixed inset-0 w-full h-full z-0"
-            style={{
-              background: "radial-gradient(125% 125% at 50% 10%, #000000 40%, #0d1a36 100%)",
-            }}
+            
           />
 
 
