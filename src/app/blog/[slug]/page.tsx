@@ -22,7 +22,19 @@ type BlogFrontmatter = {
     date: string;
 };
 
-// ✅ Correctly type params for App Router
+// ✅ Tell Next.js which slugs to generate at build time
+export async function generateStaticParams() {
+  const blogsDir = path.join(process.cwd(), "src/blogs");
+  const files = fs.readdirSync(blogsDir);
+
+  return files
+    .filter((file) => file.endsWith(".mdx"))
+    .map((file) => ({
+      slug: file.replace(/\.mdx$/, ""),
+    }));
+}
+
+
 export default async function Page({ params }: { params: any }) {
     const { slug } = await params;
     const filepath = path.join(process.cwd(), "src/blogs", `${slug}.mdx`);
