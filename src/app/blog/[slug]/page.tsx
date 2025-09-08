@@ -31,7 +31,7 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }: { params: any }) {
-    const { slug } = params;
+    const { slug } = await params;
     const filepath = path.join(process.cwd(), "src/blogs", `${slug}.mdx`);
 
     if (!fs.existsSync(filepath)) {
