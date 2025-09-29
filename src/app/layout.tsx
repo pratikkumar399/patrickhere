@@ -32,7 +32,7 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html lang="en" className={geistMono.className}>
+    <html lang="en" className={ibmPlexSansCondensed.className}>
       <head>
         {/* React Scan script */}
         <Script
@@ -61,7 +61,7 @@ export default function RootLayout({
         <div className="min-h-screen w-full relative ">
           <div
             className="fixed inset-0 w-full h-full z-0"
-            
+
           />
 
 
