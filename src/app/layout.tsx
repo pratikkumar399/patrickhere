@@ -26,8 +26,8 @@ const ibmPlexSansCondensed = IBM_Plex_Sans_Condensed({
 });
 
 export const metadata: Metadata = {
-  title: "Pratik Rai",
-  description: "Personal portfolio website",
+  title: "_pratik",
+  description: "my digital footprint",
 };
 
 export default function RootLayout({
@@ -64,8 +64,8 @@ export default function RootLayout({
 
       <body className="bg-[rgba(23,23,23)">
 
-        
-        
+
+
 
         <div className="min-h-screen w-full bg-black relative overflow-hidden">
           {/* Pink Aurora Top Background */}
