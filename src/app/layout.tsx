@@ -62,33 +62,47 @@ export default function RootLayout({
         </Script>
       </head>
 
-      <body className="bg-black">
-        <div className="min-h-screen w-full relative ">
+      <body className="bg-[rgba(23,23,23)">
+
+        
+        
+
+        <div className="min-h-screen w-full bg-black relative overflow-hidden">
+          {/* Pink Aurora Top Background */}
           <div
-            className="fixed inset-0 w-full h-full z-0"
-
+            className="absolute inset-0 z-0 pointer-events-none"
+            style={{
+              background: "radial-gradient(125% 125% at 50% 100%, #000000 40%, #2b0707 100%)",
+            }}
           />
+          <div className="min-h-screen w-full relative ">
+            <div
+              className="fixed inset-0 w-full h-full z-0"
+
+            />
 
 
-          <div className="relative z-10 flex flex-col content-center max-w-4xl px-4 mx-auto  mb-[100px] bg-transparent">
-            <PostHogProvider>
-              <Suspense fallback={null}>
-                <Analytics />
-              </Suspense>
-              <nav>
-                <div className="flex justify-end gap-4 mt-10 text-blue-400 ">
-                  <Link href={"/"}>home</Link>
-                  <Link href={"/blog"}>blogs</Link>
-                  <Link href={"/projects"}>projects</Link>
+            <div className="relative z-10 flex flex-col content-center max-w-4xl px-4 mx-auto  mb-[100px] bg-transparent">
+              <PostHogProvider>
+                <Suspense fallback={null}>
+                  <Analytics />
+                </Suspense>
+                <nav>
+                  <div className="flex justify-end gap-4 mt-10 text-blue-400 ">
+                    <Link href={"/"}>home</Link>
+                    <Link href={"/blog"}>blogs</Link>
+                    <Link href={"/projects"}>projects</Link>
 
-                  <Link href={"https://medium.com/@raipratik399"} target="_blank" className="flex gap-0 justify-center">medium  <LucideArrowUpRight width={18} />  </Link>
-                  <Link href={"https://github.com/pratikkumar399"} className="flex gap-0 justify-center">github <LucideArrowUpRight width={18} /></Link>
-                </div>
-              </nav>
-              {children}
-            </PostHogProvider>
+                    <Link href={"https://medium.com/@raipratik399"} target="_blank" className="flex gap-0 justify-center">medium  <LucideArrowUpRight width={18} />  </Link>
+                    <Link href={"https://github.com/pratikkumar399"} className="flex gap-0 justify-center">github <LucideArrowUpRight width={18} /></Link>
+                  </div>
+                </nav>
+                {children}
+              </PostHogProvider>
+            </div>
           </div>
         </div>
+
       </body>
     </html >
   );

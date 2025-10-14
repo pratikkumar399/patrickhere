@@ -41,7 +41,7 @@ const BlogsSection = () => {
                     Sharing knowledge through technical writing on various development topics.
                 </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-1 gap-6 mb-8">
                     {blogPosts?.slice(0, 4).map((blog, index) => {
                         const { category, icon: IconComponent, color } = getBlogCategory(blog.title);
                         return (
