@@ -1,0 +1,172 @@
+---
+title: "Upgrading from Next.js 14 to 15: What Changes, How to Migrate, and Why the App Router Wins"
+date: "2025-10-12"
+tags: ["frontend", "next.js"]
+author: "pratik"
+description: "Migration of Next.js from 14 to 15, and moving away from pages router to app router"
+---
+
+
+Next.js 15 has landed with smarter defaults, React 19 support, and a simpler, faster mental model for data fetching and caching. For teams still on Next.js 14, this guide breaks down what’s new, what’s changed, and how to migrate smoothly, including why the App Router should be your long-term move.
+
+---
+
+## What’s New in Next.js 15
+
+Next.js 15 continues to refine the developer experience while aligning tightly with modern React conventions. Key highlights include:
+
+* **React 19 support** with hydration and compiler improvements (react 18 is still supported).
+* **No implicit caching** — `fetch`, `GET` Route Handlers, and client navigations now default to `"no-store"`.
+* **Turbopack** dev mode is faster and more stable.
+* **TypeScript in config** — you can now use `next.config.ts`.
+* **Stable instrumentation API** for server lifecycle observability.
+* **`unstable_after` API** (experimental) to execute code after response streaming.
+* **Improved Server Actions** — unguessable endpoints and automatic cleanup of unused actions.
+* **Better control over `Cache-Control` headers** for self-hosted environments.
+* **ESLint 9 support** and general build/runtime performance gains.
+
+You can read the [official release notes](https://nextjs.org/blog/next-15) and [App Router migration guide](https://nextjs.org/docs/app/guides/migrating/app-router-migration) for deeper details.
+
+---
+
+## Step-by-Step Upgrade: Next.js 14 → 15
+
+### 1. Prepare Your Environment
+
+Check that your Node.js version is supported, commit a clean working tree, and branch off for the upgrade.
+
+### 2. Update Dependencies
+
+Use the codemod (recommended):
+
+```bash
+npx @next/codemod@canary upgrade latest
+```
+
+Or manually update:
+
+```bash
+npm i next@latest react@latest react-dom@latest
+# or
+yarn add next@latest react@latest react-dom@latest
+```
+
+### 3. Handle Caching & Data Fetching
+
+Caching is now **explicit**. Nothing is cached by default.
+Use:
+
+```js
+fetch(url, { cache: 'force-cache' })
+```
+
+or
+
+```js
+export const revalidate = 60; // seconds
+```
+
+in your routes/components.
+Review any places that previously relied on implicit caching — they’ll now trigger fresh requests.
+
+### 4. Update Configuration
+
+You can migrate to a TypeScript config file (`next.config.ts`).
+If you self-host, review your `Cache-Control` behavior and any custom edge settings.
+Also verify any Server Actions — endpoints are now more secure and unused ones will be pruned.
+
+### 5. Align Tooling
+
+Upgrade to ESLint 9 and re-run type checks — some `Request` and `Response` types have changed.
+
+### 6. Test & Observe
+
+Run your app locally and in production:
+
+```bash
+npm run dev
+npm run build && npm run start
+```
+
+Watch caching headers and server load; add explicit revalidation where needed.
+
+---
+
+## Migrating from Pages Router → App Router
+
+The App Router is the future of Next.js. You can migrate gradually by creating an `app/` directory alongside your existing `pages/` folder.
+
+### Core Concept Mapping
+
+* `pages/` → `app/segment/page.tsx`
+* `_app.tsx`, `_document.tsx` → `app/layout.tsx`
+* `pages/api/*.ts` → `app/api/route.ts`
+* `getStaticProps` / `getServerSideProps` → async data fetching in Server Components
+* `head` → Metadata API (`generateMetadata`)
+* `loading.tsx` & `error.tsx` → colocated in each route segment
+
+---
+
+## Why Move to the App Router?
+
+The App Router isn't just new — it's a cleaner architecture designed for long-term maintainability.
+
+* **Performance by default:** React Server Components reduce client JS and enable streaming + Suspense for faster page loads.
+* **Persistent layouts:** Shared UI (like navbars or sidebars) stays mounted across navigations.
+* **Simplified data fetching:** Fetch directly inside Server Components; no more verbose lifecycle methods.
+* **Colocation:** Routes, layouts, and UI states live together — less boilerplate, more clarity.
+* **Improved developer experience:** The file system directly maps to your navigation structure, with native Metadata and form handling APIs.
+
+---
+
+## Practical Migration Plan
+
+1. Start small — migrate one isolated section (like `/dashboard`) to `app/`.
+2. Create a root `layout.tsx` and add nested layouts as needed.
+3. Move data fetching logic into Server Components or Route Handlers.
+4. Replace `_document` and `head` with Metadata API usage.
+5. Add `loading.tsx` and `error.tsx` files for segment-level UX.
+6. Continue migrating until all legacy pages are retired.
+
+---
+
+## Common Edge cases
+
+* Forgetting to set explicit caching (`revalidate` or `force-cache`).
+* Using browser APIs inside Server Components — wrap them in `"use client"`.
+* Losing metadata during migration — move it to `generateMetadata`.
+* Ignoring partial migrations — test navigation between old and new routers carefully.
+
+---
+
+## Quick Checklists
+
+### Next.js 14 → 15
+
+* [ ] Update `next`, `react`, `react-dom`.
+* [ ] Run codemod and fix lint/type issues.
+* [ ] Add explicit caching or revalidation where needed.
+* [ ] Verify Server Actions and observability tools.
+* [ ] Test and deploy with cache monitoring.
+
+### Pages Router → App Router
+
+* [ ] Add `app/` with `layout.tsx` + `page.tsx`.
+* [ ] Migrate one route at a time.
+* [ ] Move to Server Components for data fetching.
+* [ ] Use Metadata API for SEO.
+* [ ] Add `loading.tsx` and `error.tsx` UIs.
+
+---
+
+## Final Thoughts
+
+Next.js 15 is more than a version bump, it's a shift toward a server-first, explicitly cached, and more maintainable React architecture. The App Router makes large apps faster, cleaner, and easier to scale. If your repo is too large, then you can upgrade your app incrementally, analyzing bundles and changes as your move forward with tje process.
+
+### Why I Upgraded My Own Project
+
+When I upgraded my own monorepo from Next.js 14 to 15, the biggest win wasn't just performance — it was **clarity**. The App Router forced me to think about where data actually lives, what should be cached, and which parts of my app truly need to run on the client.
+
+If you're sitting on the fence about migrating, start with one route. Once you experience how the App Router simplifies your architecture, you won't want to go back.
+
+
